@@ -1,0 +1,92 @@
+-- we don't know how to generate root <with-no-name> (class Root) :(
+create table direccion
+(
+	id_direccion INTEGER
+		primary key autoincrement,
+	calle_p TEXT(150) not null,
+	calle_s TEXT(150),
+	referencia TEXT(150),
+	ciudad TEXT(150)
+);
+
+create table establecimiento
+(
+	id_estab INTEGER
+		primary key autoincrement,
+	nombre TEXT(150) not null,
+	estado INTEGER(1) default 1,
+	url_img TEXT(255),
+	tipo_local TEXT(50) not null,
+	direccion INTEGER
+		references direccion
+);
+
+create table marca_producto
+(
+	id_marca INTEGER
+		primary key autoincrement,
+	marca TEXT(120) not null
+);
+
+create table tipo_producto
+(
+	id_tipo INTEGER
+		primary key autoincrement,
+	tipo TEXT(80) not null
+);
+
+create table producto
+(
+	id_producto INTEGER
+		primary key autoincrement,
+	nombre TEXT(120) not null,
+	tipo INTEGER default 1
+		references tipo_producto,
+	marca INTEGER default 1
+		references marca_producto
+);
+
+create table usuario
+(
+	dni TEXT(10)
+		primary key,
+	nombres TEXT(80) not null,
+	apellidos TEXT(80) not null,
+	telefono TEXT(10) not null,
+	usuario TEXT(25) not null,
+	password TEXT(25) not null,
+	fecha_nac DATE not null
+);
+
+create table gerente
+(
+	dni TEXT(10)
+		primary key
+		references usuario,
+	ruc TEXT(13) not null
+		unique,
+	establecimiento INTEGER(4)
+);
+
+create table solicitud
+(
+	id_solicitud INTEGER
+		primary key autoincrement,
+	cantidad INTEGER(3) not null,
+	fecha DATE default CURRENT_DATE,
+	cliente TEXT(10) not null
+		references usuario,
+	producto INTEGER not null
+		references producto,
+	estado TEXT(11) default 'PENDIENTE'
+);
+
+create table respuesta
+(
+	establecimiento INTEGER
+		references establecimiento,
+	solicitud INTEGER
+		references solicitud,
+	primary key (establecimiento, solicitud)
+);
+

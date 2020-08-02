@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="FindItDB.sqlite" uuid="d68e7b3d-1ccd-4189-ad12-9a6b9ab923a4">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Scoow\Documents\Proyectos\IntelliJ\FindItLocals\FindItDB.sqlite</jdbc-url>
+    </data-source>
+  </component>
+</project>
